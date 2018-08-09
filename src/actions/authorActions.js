@@ -4,6 +4,7 @@ import authorApi from '../api/mockAuthorApi';
 import * as types from './actionTypes';
 
 export function loadAuthorSuccess(authors){
+    debugger;
     return {type:types.LOAD_AUTHOR_SUCCESS,authors} ; // returns action object with type property.
                                           // ES6  you can omit if RHS == LHS                   
 }

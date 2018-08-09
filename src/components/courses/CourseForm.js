@@ -4,6 +4,7 @@ import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
  
 const CourseForm = ({course,allAuthors,onSave,onChange,loading,errors}) =>{
+
     return(
         <form>
             <h2>Add Course</h2>
