@@ -1,8 +1,7 @@
-import React, { PropTypes } from 'react';
+import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as courseActions from '../../actions/courseActions';
-
 import CourseForm from '../courses/CourseForm';
 
 class ManageCoursePage extends React.Component {
@@ -14,6 +13,7 @@ class ManageCoursePage extends React.Component {
             error:{}
         };
         this.updateCourseState = this.updateCourseState.bind(this);
+        this.saveCourse = this.saveCourse.bind(this);
     }
 
     updateCourseState(event){
@@ -22,24 +22,35 @@ class ManageCoursePage extends React.Component {
         course[field] =event.target.value;
         return this.setState({course:course});
     }
+
+    saveCourse(course){
+        event.preventDefault();
+        this.props.actions.saveCourse(this.state.course);
+        this.context.router.push('/courses');
+    }
+
   render() {
     return (
         <CourseForm course={this.state.course} 
                     allAuthors={this.props.authors} 
                     errors={this.state.error} 
                     onChange={this.updateCourseState}
+                    onSave={this.saveCourse}
         />    
     );
   }
 }
 
 
-ManageCoursePage.propTypes ={
-    course:PropTypes.object.isRequired,
-    authors:PropTypes.array.isRequired
+ManageCoursePage.propTypes = {
+    course: PropTypes.object.isRequired,
+    authors: PropTypes.array.isRequired,
+    actions: PropTypes.object.isRequired
+  };
+
+ManageCoursePage.contextTypes ={
+    router:PropTypes.object
 };
-
-
 
 function mapStateToProps(state,ownProps){
     let course={id:'', watchHref:'',title:'',authorId:'',length:'',category:''};
@@ -65,3 +76,4 @@ function mapDispatchToProps(dispatch){
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage);
+  
