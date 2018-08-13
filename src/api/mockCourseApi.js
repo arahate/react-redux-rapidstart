@@ -65,16 +65,18 @@ class CourseApi {
   }
 
   static saveCourse(course) {
-    debugger;
+  
     course = Object.assign({}, course); // to avoid manipulating object passed in.
     return new Promise((resolve, reject) => {
+      debugger;
       setTimeout(() => {
         // Simulate server-side validation
+        debugger;
         const minCourseTitleLength = 1;
         if (course.title.length < minCourseTitleLength) {
           reject(`Title must be at least ${minCourseTitleLength} characters.`);
         }
-
+        
         if (course.id) {
           const existingCourseIndex = courses.findIndex(a => a.id == course.id);
           courses.splice(existingCourseIndex, 1, course);
