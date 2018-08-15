@@ -1,30 +1,16 @@
-import React, { PropTypes}  from 'react';
-import Header from './common/Header';
-import {connect} from 'react-redux';
+import React  from 'react';
+import PropTypes from 'prop-types';
+import { Admin, Resource, Login } from 'react-admin';
+import jsonServerProvider from 'ra-data-json-server';
+import {PostList} from './common/Posts/PostList'; 
+import {UserList} from './common/Users/UserList'; 
+import {PostCreate ,PostEdit} from './common/Posts/PostsCreate';  
+import authProvider from './authProvider';
 
-class App extends React.Component {
-    render() {
-        return (
-           <div className="container-fluid">
-               <Header loading={this.props.loading} />
-               {this.props.children} 
-           </div>
-        );
-    }
-}
-
-//{this.props.children} are components passed to App component as children by react router.
-
-const mapStateToProps = (state, ownProps) => {
-    return {
-        loading: state.ajaxCallInProgress>0
-    };
-};
-
-App.propTypes= {
-    children: PropTypes.object.isRequired,
-    loading:PropTypes.bool.isRequired
-};
-
-
-export default connect(mapStateToProps)(App);
+const dataProvider = jsonServerProvider('http://jsonplaceholder.typicode.com');
+const App = () => <Admin title="Pennant Admin" dataProvider={dataProvider} loginPage={Login} authProvider={authProvider} >
+        <Resource name="posts" list={PostList} create={PostCreate} edit={PostEdit} />
+        <Resource name="users" list={UserList}  />
+</Admin>;
+ 
+export default App;

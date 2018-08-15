@@ -1,6 +1,8 @@
 import courseApi from '../api/mockCourseApi';
 import * as types from './actionTypes';
+
 import {beginAjaxCall} from './ajaxStatusActions';
+
 
 export function loadCoursesSuccess(courses){
     return {type:types.LOAD_COURSES_SUCCESS,courses} ; // returns action object with type property.
