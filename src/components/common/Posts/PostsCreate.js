@@ -1,5 +1,5 @@
 import React from 'react';
-import { Create, Edit, SimpleForm, PostTitle ,DisabledInput, TextInput, DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton } from 'react-admin';
+import { Create, Edit, SimpleForm, DisabledInput, TextInput, DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton } from 'react-admin';
 import RichTextInput from 'ra-input-rich-text';
 
 const required = (message = 'Required') =>
@@ -8,16 +8,16 @@ const required = (message = 'Required') =>
 export const PostCreate = (props) => (
     <Create {...props}>
         <SimpleForm>
-            <TextInput source="title" />
-            <TextInput source="teaser" options={{ multiLine: true }} />
-            <RichTextInput source="body" />
+            <TextInput source="title" validate={required()}/>
+            <LongTextInput source="teaser" validate={required()}/>
+            <RichTextInput source="body"  />
             <DateInput label="Publication date" source="published_at" defaultValue={new Date()} />
         </SimpleForm>
     </Create>
 );
 
 export const PostEdit = (props) => (
-    <Edit title={<PostTitle />} {...props}>
+    <Edit  {...props}>
         <SimpleForm>
             <DisabledInput label="Id" source="id" />
             <TextInput source="title" validate={required()} />

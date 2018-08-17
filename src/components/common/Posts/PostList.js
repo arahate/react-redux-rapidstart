@@ -1,10 +1,26 @@
 // in src/posts.js
 import React from 'react';
-import { List,   Datagrid, TextField, ReferenceField } from 'react-admin';
+import { List,   Datagrid, TextField, ReferenceField ,EditButton ,Responsive, SimpleList } from 'react-admin';
 import RichTextInput from 'ra-input-rich-text';
 
 export const PostList = (props) => (
     <List {...props}>
+    <Responsive
+        small ={
+            <SimpleList
+            primaryText={record => record.title}
+            secondaryText={record => `${record.views} views`}
+            tertiaryText={record => new Date(record.published_at).toLocaleDateString()}
+        />
+        }
+        medium ={
+            <SimpleList
+            primaryText={record => record.title}
+            secondaryText={record => `${record.views} views`}
+            tertiaryText={record => new Date(record.published_at).toLocaleDateString()}
+        />
+        }
+        large ={
         <Datagrid>
             <TextField source="id" />
             <TextField source="userId" />
@@ -13,7 +29,10 @@ export const PostList = (props) => (
             </ReferenceField>
             <TextField source="title" />
             <TextField source="body" />
+            <EditButton />
         </Datagrid>
+        }
+        />
     </List>
 );
 
