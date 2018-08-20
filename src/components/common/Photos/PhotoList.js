@@ -7,7 +7,7 @@ import {List,   Datagrid, TextField, ImageField,EditButton, FileField  } from 'r
 
 
 export const PhotoList = (props) => (
-    <List {...props} perPage={25}>
+    <List {...props} perPage={10}>
         <Datagrid>
             <TextField source="title" />
             <ImageField source="thumbnailUrl" />

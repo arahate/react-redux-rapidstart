@@ -4,7 +4,7 @@ import { List,   Datagrid, TextField, ReferenceField ,EditButton ,Responsive, Si
 import RichTextInput from 'ra-input-rich-text';
 
 export const PostList = (props) => (
-    <List {...props}>
+    <List title='Posts' {...props}>
     <Responsive
         small ={
             <SimpleList
@@ -24,9 +24,9 @@ export const PostList = (props) => (
         <Datagrid>
             <TextField source="id" />
             <TextField source="userId" />
-            <ReferenceField label="User" source="userId" reference="users">
+             <ReferenceField label="User" source="userId" reference="users">
                 <TextField source="name" />
-            </ReferenceField>
+            </ReferenceField> 
             <TextField source="title" />
             <TextField source="body" />
             <EditButton />
