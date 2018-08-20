@@ -8,15 +8,16 @@ import {PhotoList} from './common/Photos/PhotoList';
 import {PostCreate ,PostEdit} from './common/Posts/PostsCreate';  
 import authProvider from './authProvider';
 import {EditPhoto} from './common/Photos/EditPhoto'; 
-
+import {EditUser} from './common/Users/EditUser'; 
 
 const dataProvider = jsonServerProvider('http://jsonplaceholder.typicode.com');
 const App = () => <Admin title="Pennant Admin" dataProvider={dataProvider} loginPage={Login} authProvider={authProvider} >
         <Resource name="posts" list={PostList} create={PostCreate} edit={PostEdit} />
-        <Resource name="users" list={UserList}  />
+        <Resource name="users" list={UserList} edit={EditUser} />
         <Resource name="photos" list={PhotoList} edit={EditPhoto}   />
 </Admin>;
  
+
  
 
 export default App;
