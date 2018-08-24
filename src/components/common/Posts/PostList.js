@@ -13,14 +13,8 @@ export const PostList = (props) => (
             tertiaryText={record => new Date(record.published_at).toLocaleDateString()}
         />
         }
+
         medium ={
-            <SimpleList
-            primaryText={record => record.title}
-            secondaryText={record => `${record.views} views`}
-            tertiaryText={record => new Date(record.published_at).toLocaleDateString()}
-        />
-        }
-        large ={
         <Datagrid>
             <TextField source="id" />
             <TextField source="userId" />

@@ -1,7 +1,7 @@
 import React  from 'react';
 import PropTypes from 'prop-types';
 import { Admin, Resource, Login } from 'react-admin';
-import jsonServerProvider from './dataprovider';
+import jsonServerProvider from 'ra-data-json-server';
 import {PostList} from './common/Posts/PostList'; 
 import {UserList} from './common/Users/UserList'; 
 import {CommentsList} from './common/Comments/CommentsList'; 
@@ -10,8 +10,34 @@ import { Dashboard } from './common/Dashboard/Dashboard';
 import { PhotoList } from './common/Photos/PhotoList'; 
 import {PostCreate ,PostEdit} from './common/Posts/PostsCreate';  
 import authProvider from './authProvider';
-import {EditPhoto} from './common/Photos/EditPhoto'; 
+import {UserEdit} from './common/Users/UserEdit';
+import RestClient  from './firebaseprovider/restClient';
 
+const firebaseConfig = {
+    apiKey: "AIzaSyBd9tUsbFEu1bFOUpGWf8cun71RrsBt694",
+    authDomain: "cfi-api-01.firebaseapp.com",
+    databaseURL: "https://cfi-api-01.firebaseio.com",
+    projectId: "cfi-api-01",
+    storageBucket: "cfi-api-01.appspot.com",
+    messagingSenderId: "322729320155"
+};
+
+const clientOptions = {
+    timestampFieldNames: {
+      createdAt: 'createdAt',
+      updatedAt: 'updatedAt'
+    },
+    trackedResources: [{
+        name: 'posts', // The name reference to be used in all other places in AOR
+        noauth: true,
+      }, {
+        name: 'comments', // The name reference to be used in all other places in AOR
+        noauth: true,
+      },{
+        name: 'users', // The name reference to be used in all other places in AOR
+        noauth: true,
+      }] // A single string assumes path and name as equal, non private and without upload fields
+  };
 
 const myTheme = createMuiTheme({
         
@@ -29,11 +55,16 @@ const myTheme = createMuiTheme({
         },
         
     });
-const dataProvider = jsonServerProvider('https://cfi-api-01.firebaseio.com/');
-const App = () => <Admin title="Pennant Admin" dashboard = {Dashboard} theme= {myTheme}  dataProvider={dataProvider} loginPage={Login} authProvider={authProvider} >
-        <Resource name="posts.json" options={{ label: 'Posts' }}  list={PostList} create={PostCreate} edit={PostEdit} />
-        <Resource name="users.json" options={{ label: 'Users' }} list={UserList}  />
-        <Resource name="comments.json"  />
+const dataProvider = jsonServerProvider('http://jsonplaceholder.typicode.com');
+const App = () => <Admin title="Pennant Admin" 
+                dashboard = {Dashboard} 
+                theme= {myTheme} 
+                dataProvider={RestClient(firebaseConfig, clientOptions)}
+                loginPage={Login} 
+                authProvider={authProvider} >
+        <Resource name="posts" options={{ label: 'Posts' }}  list={PostList} create={PostCreate} edit={PostEdit} />
+        <Resource name="users" options={{ label: 'Users' }} list={UserList}  edit={UserEdit} />
+        <Resource name="comments"  />
         
 
 </Admin>;

@@ -12,6 +12,7 @@ import {
     DELETE_MANY,
 } from 'react-admin';
 
+
 /**
  * Maps react-admin queries to a json-server powered REST API
  *
@@ -34,6 +35,7 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
     const convertDataRequestToHTTP = (type, resource, params) => {
         let url = '';
         const options = {};
+  
         switch (type) {
             case GET_LIST: {
                 const { page, perPage } = params.pagination;
@@ -49,7 +51,7 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
                 break;
             }
             case GET_ONE:
-                url = `${apiUrl}/${resource}/${params.id}`;
+                url = `${apiUrl}/${resource}/${params.id}.json`;
                 break;
             case GET_MANY_REFERENCE: {
                 const { page, perPage } = params.pagination;
@@ -66,7 +68,7 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
                 break;
             }
             case UPDATE:
-                url = `${apiUrl}/${resource}/${params.id}`;
+                url = `${apiUrl}/${resource}/${params.id}.json`;
                 options.method = 'PUT';
                 options.body = JSON.stringify(params.data);
                 break;
@@ -108,7 +110,7 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
                 return {
                     
                     data: json,
-                    total:json.length
+                    total:json.length //This should be injected in the response seperately
                 };
             case CREATE:
                 return { data: { ...params.data, id: json.id } };
