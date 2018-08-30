@@ -27,7 +27,7 @@ export const PostEdit = (props) => (
                 <Datagrid>
                     <TextField source="body" />
                     <DateField source="created_at" />
-                    <EditButton />
+                  
                 </Datagrid>
             </ReferenceManyField>
         </SimpleForm>
