@@ -40,7 +40,7 @@ export const CityEdit = (props) => (
                 <SelectInput optionValue="id"  optionText="countryname" />
             </ReferenceInput>
 
-            {/* <FormDataConsumer>
+            <FormDataConsumer>
                 {({ formData, ...rest }) =>
                      <SelectInput 
                          source="city"
@@ -48,7 +48,7 @@ export const CityEdit = (props) => (
                          {...rest}
                      />
                 }
-            </FormDataConsumer> */}
+            </FormDataConsumer>
         </SimpleForm>
     </Edit>
 ); 

@@ -15,7 +15,7 @@ export const EditPhoto = (props) => (
             <ImageInput source="photos" label="Upload new photo" accept="image/*">
                 <ImageField source="url" title="title" />
             </ImageInput>
-            <img src={tile.img} alt={tile.title} />
+            {/* <img src={tile.img} alt={tile.title} /> */}
            
         </SimpleForm>
     </Show>
