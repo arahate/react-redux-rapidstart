@@ -14,12 +14,12 @@ import {UserEdit} from './common/Users/UserEdit';
 import RestClient  from './firebaseprovider/restClient';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBd9tUsbFEu1bFOUpGWf8cun71RrsBt694",
-    authDomain: "cfi-api-01.firebaseapp.com",
-    databaseURL: "https://cfi-api-01.firebaseio.com",
-    projectId: "cfi-api-01",
-    storageBucket: "cfi-api-01.appspot.com",
-    messagingSenderId: "322729320155"
+    apiKey: "<use api key>",
+    authDomain: "<domain>",
+    databaseURL: "<ur>",
+    projectId: "<proectid>",
+    storaeBucket: "<storage_bucket>",
+    messagingSenderId: "id"
 };
 
 const clientOptions = {
